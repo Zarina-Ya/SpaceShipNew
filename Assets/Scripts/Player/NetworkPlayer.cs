@@ -26,7 +26,6 @@ namespace Players
             }
 
             playerCharacter = Instantiate(playerPrefab, transform.position, transform.rotation);
-            
 
             SpawnWithClientAuthority(playerCharacter, connectionToClient);
         }
