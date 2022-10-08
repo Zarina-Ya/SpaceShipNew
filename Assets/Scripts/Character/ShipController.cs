@@ -95,15 +95,21 @@ namespace Characters
             gameObject.name = PlayerName;
         }
 
-        //[ClientRpc]
-        //public void RcpChangePosition(Vector3 position)
-        //{
-        //    Debug.Log("[ShipController] - [RcpChangePosition]");
-        //    gameObject.SetActive(false);
-        //    transform.position = position;
-        //    gameObject.SetActive(true);
+        [ServerCallback]
+        private void OnTriggerEnter(Collider other)
+        {
+            RpcChangePosition(new Vector3(100, 1000, 100));
+        }
 
-        //}
+        [ClientRpc]
+        public void RpcChangePosition(Vector3 position)
+        {
+            Debug.Log("[ShipController] - [RcpChangePosition]");
+            gameObject.SetActive(false);
+            transform.position = position;
+            gameObject.SetActive(true);
+
+        }
 
 
     }
