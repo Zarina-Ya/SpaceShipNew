@@ -28,6 +28,11 @@ namespace Main
             NetworkServer.RegisterHandler(100, ReceiveName);
         }
 
+        public override void OnClientDisconnect(NetworkConnection conn)
+        {
+            base.OnClientDisconnect(conn);
+            _players.Remove(conn.connectionId);
+        }
         public class MessageLogin : MessageBase
         {
             public string login;
